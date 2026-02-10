@@ -2,7 +2,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-*.txt
 .venv/
 env/
 venv/
@@ -19,3 +18,6 @@ Thumbs.db
 *.egg-info/
 dist/
 build/
+
+neo4j_data/
+vector_db/

@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  neo4j:
+    image: neo4j:5.14
+    container_name: rag-neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD:-ChangeMe123!}
+      NEO4J_PLUGINS: '["apoc"]'
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+    healthcheck:
+      test: ["CMD", "cypher-shell", "-u", "neo4j", "-p", "${NEO4J_PASSWORD}", "RETURN 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: rag-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_USER=neo4j
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD}
+      - OPEN_ROUTER_KEY=${OPEN_ROUTER_KEY}
+      - VECTOR_DB_PATH=/app/vector_db
+    volumes:
+      - vector_db_data:/app/vector_db
+      - ./backend/app:/app
+    depends_on:
+      neo4j:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  neo4j_data:
+  vector_db_data:
+  neo4j_logs:
