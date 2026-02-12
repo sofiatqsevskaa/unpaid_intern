@@ -2,19 +2,16 @@ from fastapi import FastAPI, UploadFile, File, Form
 from typing import Optional, List
 from datetime import datetime
 from contextlib import asynccontextmanager
-
-from .models import *
-from .storage.vector_storage import VectorStorage
-from .storage.graph_storage import GraphStorage
+from storage_repository import StorageRepository
+from models import *
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    app.state.vector_storage = VectorStorage()
-    app.state.graph_storage = GraphStorage()
+    repo = StorageRepository()
+    app.state.repo = repo
     yield
-    app.state.graph_storage.close()
-
+    repo.close()
 
 app = FastAPI(lifespan=lifespan)
 
@@ -28,7 +25,6 @@ async def upload_to_both_dbs(
     description: Optional[str] = Form(None)
 ):
     responses = []
-
     content = await file.read()
     text_content = content.decode('utf-8')
     tag_list = [tag.strip() for tag in tags.split(",") if tag.strip()]
@@ -40,7 +36,7 @@ async def upload_to_both_dbs(
     }
 
     try:
-        vector_result = app.state.vector_storage.add_document(
+        vector_result = app.state.repo.add_to_vector(
             user_id=user_id,
             document_name=document_name,
             content=text_content,
@@ -66,7 +62,7 @@ async def upload_to_both_dbs(
         ))
 
     try:
-        graph_result = app.state.graph_storage.add_document(
+        graph_result = app.state.repo.add_to_graph(
             user_id=user_id,
             document_name=document_name,
             content=text_content,
@@ -96,40 +92,25 @@ async def upload_to_both_dbs(
 
 @app.get("/query/vector")
 async def query_vector_db(user_id: str, query: str, top_k: int = 5):
-    results = app.state.vector_storage.query(user_id, query, top_k)
-    return {
-        "user_id": user_id,
-        "query": query,
-        "results_count": len(results),
-        "results": results
-    }
+    results = app.state.repo.query_vector(user_id, query, top_k)
+    return {"user_id": user_id, "query": query, "results_count": len(results), "results": results}
 
 
 @app.get("/query/graph")
 async def query_graph_db(user_id: str, query: str):
-    results = app.state.graph_storage.query(user_id, query)
-    return {
-        "user_id": user_id,
-        "query": query,
-        "results_count": len(results),
-        "results": results
-    }
+    results = app.state.repo.query_graph(user_id, query)
+    return {"user_id": user_id, "query": query, "results_count": len(results), "results": results}
 
 
 @app.get("/")
 async def root():
-    return {"message": "RAG API is running"}
+    return {"message": "Multi-KB RAG API is running"}
 
 
 @app.get("/health")
 async def health_check():
     return {
         "status": "healthy",
-        "vector_storage": hasattr(app.state, 'vector_storage'),
-        "graph_storage": hasattr(app.state, 'graph_storage')
+        "vector_storage": hasattr(app.state, 'repo') and app.state.repo.vector is not None,
+        "graph_storage": hasattr(app.state, 'repo') and app.state.repo.graph is not None
     }
-
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)

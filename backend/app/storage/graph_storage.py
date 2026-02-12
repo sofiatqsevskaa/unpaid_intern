@@ -9,7 +9,7 @@ PASSWORD = os.environ.get("PASSWORD")
 
 class GraphStorage:
     def __init__(self, uri: str = "bolt://localhost:7687",
-                 username: str = "neo4j", password: str = "PASSWORD"):
+                 username: str = "neo4j", password: str = PASSWORD):
         self.driver = GraphDatabase.driver(uri, auth=(username, password))
         try:
             self.model = spacy.load("en_core_web_md")
@@ -96,7 +96,7 @@ class GraphStorage:
                     entity_name=entity["text"],
                     entity_type=entity["label"],
                     document_id=document_id,
-                    context=content[max(0, entity["start"] - 50)                                    :entity["end"] + 50],
+                    context=content[max(0, entity["start"] - 50):entity["end"] + 50],
                     position=entity["start"]
                 )
 

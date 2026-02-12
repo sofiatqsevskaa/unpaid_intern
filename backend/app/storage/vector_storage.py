@@ -13,7 +13,9 @@ class VectorStorage:
 
     _embedding_function = None
 
-    def __init__(self, persist_directory: str = "/app/vector_db"):
+    def __init__(self, persist_directory: str = None):
+        if persist_directory is None:
+            persist_directory = os.environ.get("VECTOR_DB_PATH", "./vector_db")
         if VectorStorage._embedding_function is None:
             VectorStorage._embedding_function = embedding_functions.SentenceTransformerEmbeddingFunction(
                 model_name="all-MiniLM-L6-v2"
