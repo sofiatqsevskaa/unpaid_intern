@@ -9,9 +9,14 @@ from models import *
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     repo = StorageRepository()
+
+    if repo.vector is not None:
+        _ = repo.vector.embedding_function
+
     app.state.repo = repo
     yield
     repo.close()
+
 
 app = FastAPI(lifespan=lifespan)
 

@@ -5,6 +5,8 @@ from storage.graph_storage import GraphStorage
 class StorageRepository:
     def __init__(self):
         self.vector = VectorStorage()
+        _ = self.vector.embedding_function
+
         self.graph = GraphStorage()
 
     def add_to_vector(self, user_id, document_name, content, metadata):

@@ -1,9 +1,7 @@
 import chromadb
 from chromadb.config import Settings
-from chromadb.utils import embedding_functions
-from typing import List, Dict, Any
+from typing import Dict, Any
 import uuid
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 import os
 
 PASSWORD = os.environ.get("PASSWORD")
@@ -17,6 +15,7 @@ class VectorStorage:
         if persist_directory is None:
             persist_directory = os.environ.get("VECTOR_DB_PATH", "./vector_db")
         if VectorStorage._embedding_function is None:
+            from chromadb.utils import embedding_functions
             VectorStorage._embedding_function = embedding_functions.SentenceTransformerEmbeddingFunction(
                 model_name="all-MiniLM-L6-v2"
             )
@@ -26,13 +25,6 @@ class VectorStorage:
         self.client = chromadb.PersistentClient(
             path=persist_directory,
             settings=Settings(anonymized_telemetry=False)
-        )
-
-        self.text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000,
-            chunk_overlap=200,
-            length_function=len,
-            separators=["\n\n", "\n", " ", ""]
         )
 
     def create_collection(self, user_id: str):
