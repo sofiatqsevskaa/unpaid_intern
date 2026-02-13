@@ -6,6 +6,9 @@ from datetime import datetime
 from contextlib import asynccontextmanager
 from storage_repository import StorageRepository
 from models import *
+from prompt_service import router as prompt_router
+
+logger = get_logger("main")
 
 
 @asynccontextmanager
@@ -17,6 +20,18 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+app.include_router(prompt_router)
+
+
+@app.middleware("http")
+async def log_requests(request, call_next):
+    start = time.time()
+    logger.info(f"→ {request.method} {request.url.path}")
+    response = await call_next(request)
+    duration = (time.time() - start) * 1000
+    logger.info(
+        f"{request.method} {request.url.path} {response.status_code} {duration:.1f}ms")
+    return response
 
 
 @app.post("/upload", response_model=List[DocumentUploadResponse])
@@ -31,12 +46,13 @@ async def upload_to_both_dbs(
     content = await file.read()
     text_content = content.decode('utf-8')
     tag_list = [tag.strip() for tag in tags.split(",") if tag.strip()]
-    print(f"Received upload: {file.filename} from user {user_id}")
+    logger.info(f"Received upload: {file.filename} from user {user_id}")
+
     metadata = {
         "tags": tag_list,
-        "description": description,
+        "description": description or "",
         "original_filename": file.filename,
-        "content_type": file.content_type
+        "content_type": file.content_type or "text/plain"
     }
 
     try:
@@ -46,16 +62,29 @@ async def upload_to_both_dbs(
             content=text_content,
             metadata=metadata
         )
-        responses.append(DocumentUploadResponse(
-            document_id=vector_result["document_id"],
-            user_id=user_id,
-            kb_type=KnowledgeBaseType.VECTOR,
-            status="success",
-            message="document added to vector database",
-            timestamp=datetime.now(),
-            chunks_processed=vector_result["chunks_processed"]
-        ))
+        if vector_result.get("skipped"):
+            responses.append(DocumentUploadResponse(
+                document_id="skipped",
+                user_id=user_id,
+                kb_type=KnowledgeBaseType.VECTOR,
+                status="skipped",
+                message=f"duplicate: {vector_result.get('reason')}",
+                timestamp=datetime.now(),
+                chunks_processed=0
+            ))
+        else:
+            responses.append(DocumentUploadResponse(
+                document_id=vector_result["document_id"],
+                user_id=user_id,
+                kb_type=KnowledgeBaseType.VECTOR,
+                status="success",
+                message="document added to vector database",
+                timestamp=datetime.now(),
+                chunks_processed=vector_result["chunks_processed"]
+            ))
     except Exception as e:
+        logger.error(
+            f"vector upload failed for '{document_name}': {e}", exc_info=True)
         responses.append(DocumentUploadResponse(
             document_id="error",
             user_id=user_id,
@@ -82,6 +111,8 @@ async def upload_to_both_dbs(
             entities_extracted=graph_result["entities_extracted"]
         ))
     except Exception as e:
+        logger.error(
+            f"graph upload failed for '{document_name}': {e}", exc_info=True)
         responses.append(DocumentUploadResponse(
             document_id="error",
             user_id=user_id,
@@ -122,21 +153,10 @@ async def health_check():
 
 @app.get("/list_documents")
 async def list_documents(user_id: str):
-    vector_docs = app.state.repo.vector.client.get_collection(
-        name=f"user_{user_id}_docs").peek(10)
+    vector_docs = app.state.repo.vector.list_documents(user_id)
     graph_docs = app.state.repo.graph.list_documents(user_id)
-    return {"user_id": user_id, "vector_documents": vector_docs, "graph_documents": graph_docs}
-
-
-logger = get_logger("main")
-
-
-@app.middleware("http")
-async def log_requests(request, call_next):
-    start = time.time()
-    logger.info(f"→ {request.method} {request.url.path}")
-    response = await call_next(request)
-    duration = (time.time() - start) * 1000
-    logger.info(
-        f"← {request.method} {request.url.path} | {response.status_code} | {duration:.1f}ms")
-    return response
+    return {
+        "user_id": user_id,
+        "vector_documents": vector_docs,
+        "graph_documents": graph_docs
+    }

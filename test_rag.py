@@ -1,8 +1,9 @@
 import requests
 import traceback
+import json
 
-base_url = "http://localhost:8000"
-user_id = "test_user_001"
+BASE_URL = "http://localhost:8000"
+USER_ID = "test_user_001"
 
 
 def print_error(response=None, exception=None):
@@ -36,101 +37,117 @@ def safe_request(method, url, **kwargs):
         return None
 
 
-def test_vector_query(query):
-    print(f"vector query: {query}")
+def query_vector_db(query, top_k=3):
+    print(f"VECTOR DB: '{query}'")
 
     result = safe_request(
         "get",
-        f"{base_url}/query/vector",
-        params={"user_id": user_id, "query": query, "top_k": 3}
+        f"{BASE_URL}/query/vector",
+        params={"user_id": USER_ID, "query": query, "top_k": top_k}
     )
 
     if result is None:
-        return None
+        return []
 
     print(f"found {result.get('results_count', 0)} results")
-
-    for i, res in enumerate(result.get("results", []), 1):
-        print(f"{i}. {res.get('metadata', {}).get('document_name', 'unknown')}")
-        content = res.get("content", "")
-        print(f"content: {content[:150]}...")
-        print(f"distance: {res.get('distance', 0):.4f}")
-
-    print()
-    return result
+    return result.get("results", [])
 
 
-def test_graph_query(query):
-    print(f"graph query: {query}")
+def query_graph_db(query):
+    print(f"GRAPH DB: '{query}'")
 
     result = safe_request(
         "get",
-        f"{base_url}/query/graph",
-        params={"user_id": user_id, "query": query}
+        f"{BASE_URL}/query/graph",
+        params={"user_id": USER_ID, "query": query}
     )
 
     if result is None:
-        return None
+        return []
 
     print(f"found {result.get('results_count', 0)} results")
+    return result.get("results", [])
 
-    for i, res in enumerate(result.get("results", []), 1):
-        doc = res.get("document", {})
-        print(f"{i}. {doc.get('name', 'unknown')}")
-        print(f"preview: {doc.get('content_preview', '')}")
-        entities = res.get("entities", [])
-        if entities:
-            formatted = [
-                f"{e.get('name')} ({e.get('type')})" for e in entities]
-            print(f"entities: {', '.join(formatted)}")
 
-    print()
+def rag_query(query, use_vector=True, use_graph=True, top_k=3):
+    print(f"RAG QUERY: '{query}'")
+
+    vector_results = query_vector_db(query, top_k) if use_vector else []
+    graph_results = query_graph_db(query) if use_graph else []
+
+    print(
+        f"Sending to LLM with {len(vector_results)} vector + {len(graph_results)} graph results.")
+
+    payload = {
+        "query": query,
+        "vector_results": vector_results,
+        "graph_results": graph_results,
+        "max_tokens": 500,
+        "temperature": 0.3
+    }
+
+    result = safe_request(
+        "post",
+        f"{BASE_URL}/rag/query",
+        json=payload
+    )
+
+    if result:
+        print(f"ANSWER:")
+        print(result.get("response"))
+        print(f"Context used: {result.get('context_used', {})}")
+
     return result
 
 
-def test_upload():
-    print("testing upload")
-    test_content = "where did sara go?"
-    try:
-        with open("test_upload.txt", "w") as f:
-            f.write(test_content)
-    except Exception as e:
-        print_error(exception=e)
-        return None
-    try:
-        with open("test_upload.txt", "rb") as f:
-            result = safe_request(
-                "post",
-                f"{base_url}/upload",
-                data={
-                    "user_id": user_id,
-                    "document_name": "test_upload.txt",
-                    "tags": "test,upload",
-                    "description": "test upload document"
-                },
-                files={"file": f}
-            )
-    except Exception as e:
-        print_error(exception=e)
-        return None
+def test_single_queries():
+    print("TESTING INDIVIDUAL DATABASES")
+    query_vector_db("Where did Sara go?")
+    query_vector_db("What did Michael buy?")
+    query_vector_db("What kind of tree did Chloe buy?")
 
-    if result is None:
-        return None
+    query_graph_db("Sara")
+    query_graph_db("synthesizer")
+    query_graph_db("maple sapling")
 
-    for res in result:
-        print(f"{res.get('kb_type')}: {res.get('status')}")
-        if res.get("chunks_processed"):
-            print(f"chunks: {res.get('chunks_processed')}")
-        if res.get("entities_extracted"):
-            print(f"entities: {res.get('entities_extracted')}")
 
-    print()
-    return result
+def test_rag_queries():
+    print("TESTING RAG WITH BOTH DATABASES")
+    rag_query("Where did Sara go on Saturday and what did she buy?")
+    rag_query(
+        "How much did Sara spend and what did she do with her purchases later?")
+
+    rag_query("What did Michael buy from Leo and how much did it cost?")
+    rag_query(
+        "Where did Michael take his new synthesizer and what did he do with it?")
+
+    rag_query("What kind of tree did Chloe buy and where did she plant it?")
+    rag_query("Who helped Chloe at the garden center and what advice did they give?")
+    rag_query("What are the names of all the people in the stories?")
+    rag_query("What are the different locations mentioned in all the documents?")
+    rag_query("How much money did each person spend?")
+
+
+def test_vector_only():
+    print("TESTING RAG WITH VECTOR ONLY")
+    rag_query("What did Sara buy at the market?", use_graph=False)
+
+
+def test_graph_only():
+    print("TESTING RAG WITH GRAPH ONLY")
+    rag_query("Who is Leo and what does he do?", use_vector=False)
 
 
 if __name__ == "__main__":
-    print("testing system")
-    test_vector_query("Where did Sara go?")
-    test_graph_query("repair shop")
-    test_upload()
-    test_vector_query("machine")
+    health = safe_request("get", f"{BASE_URL}/health")
+    if not health:
+        print("server not responding.")
+        exit(1)
+
+    print("server is healthy. starting tests")
+    test_single_queries()
+    test_rag_queries()
+    test_vector_only()
+    test_graph_only()
+
+    print("\nALL TESTS COMPLETE")
