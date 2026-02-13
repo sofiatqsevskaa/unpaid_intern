@@ -1,3 +1,5 @@
+from logger import get_logger
+import time
 from fastapi import FastAPI, UploadFile, File, Form
 from typing import Optional, List
 from datetime import datetime
@@ -9,10 +11,6 @@ from models import *
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     repo = StorageRepository()
-
-    if repo.vector is not None:
-        _ = repo.vector.embedding_function
-
     app.state.repo = repo
     yield
     repo.close()
@@ -33,6 +31,7 @@ async def upload_to_both_dbs(
     content = await file.read()
     text_content = content.decode('utf-8')
     tag_list = [tag.strip() for tag in tags.split(",") if tag.strip()]
+    print(f"Received upload: {file.filename} from user {user_id}")
     metadata = {
         "tags": tag_list,
         "description": description,
@@ -119,3 +118,25 @@ async def health_check():
         "vector_storage": hasattr(app.state, 'repo') and app.state.repo.vector is not None,
         "graph_storage": hasattr(app.state, 'repo') and app.state.repo.graph is not None
     }
+
+
+@app.get("/list_documents")
+async def list_documents(user_id: str):
+    vector_docs = app.state.repo.vector.client.get_collection(
+        name=f"user_{user_id}_docs").peek(10)
+    graph_docs = app.state.repo.graph.list_documents(user_id)
+    return {"user_id": user_id, "vector_documents": vector_docs, "graph_documents": graph_docs}
+
+
+logger = get_logger("main")
+
+
+@app.middleware("http")
+async def log_requests(request, call_next):
+    start = time.time()
+    logger.info(f"→ {request.method} {request.url.path}")
+    response = await call_next(request)
+    duration = (time.time() - start) * 1000
+    logger.info(
+        f"← {request.method} {request.url.path} | {response.status_code} | {duration:.1f}ms")
+    return response

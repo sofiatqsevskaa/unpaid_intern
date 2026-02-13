@@ -21,3 +21,5 @@ build/
 
 neo4j_data/
 vector_db/
+
+*.sh

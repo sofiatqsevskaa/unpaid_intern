@@ -1,10 +1,7 @@
-version: '3.8'
-
 services:
   neo4j:
     image: neo4j:5.14
     container_name: rag-neo4j
-    hostname: rag-neo4j  
     ports:
       - "7474:7474"
       - "7687:7687"
@@ -31,9 +28,9 @@ services:
       - NEO4J_USER=neo4j
       - NEO4J_PASSWORD=${NEO4J_PASSWORD}
       - OPEN_ROUTER_KEY=${OPEN_ROUTER_KEY}
-      - VECTOR_DB_PATH=/app/vector_db
+      - VECTOR_DB_PATH=/data/vector_db
     volumes:
-      - vector_db_data:/app/vector_db
+      - vector_db_data:/data/vector_db
       - ./backend/app:/app
     depends_on:
       neo4j:

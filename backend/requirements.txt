@@ -9,4 +9,4 @@ en_core_web_md @ https://github.com/explosion/spacy-models/releases/download/en_
 langchain-text-splitters==0.2.4
 sentence-transformers==2.7.0
 python-dotenv==1.0.0
-pydantic==2.7.0
+pydantic==2.7.4

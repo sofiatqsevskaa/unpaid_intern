@@ -4,11 +4,15 @@ import uuid
 import spacy
 import os
 
-PASSWORD = os.environ.get("PASSWORD")
+from logger import get_logger
+
+PASSWORD = os.environ.get("NEO4J_PASSWORD")
+
+logger = get_logger("graph_storage")
 
 
 class GraphStorage:
-    def __init__(self, uri: str = "bolt://localhost:7687",
+    def __init__(self, uri: str = "bolt://neo4j:7687",
                  username: str = "neo4j", password: str = PASSWORD):
         self.driver = GraphDatabase.driver(uri, auth=(username, password))
         try:
@@ -37,7 +41,8 @@ class GraphStorage:
                      content: str, metadata: Dict[str, Any]):
 
         document_id = str(uuid.uuid4())
-
+        logger.info(
+            f"Adding document to graph storage '{document_name}' for user {user_id}")
         with self.driver.session() as session:
 
             result = session.run(
@@ -71,8 +76,10 @@ class GraphStorage:
 
             entity_count = 0
 
-            for entity in entities:
+            logger.info(
+                f"Extracted '{len(entities)}' entities from document '{document_name}'")
 
+            for entity in entities:
                 session.run(
                     """
                     MERGE (e:Entity {
@@ -96,7 +103,8 @@ class GraphStorage:
                     entity_name=entity["text"],
                     entity_type=entity["label"],
                     document_id=document_id,
-                    context=content[max(0, entity["start"] - 50):entity["end"] + 50],
+                    context=content[max(0, entity["start"] - 50)
+                                        :entity["end"] + 50],
                     position=entity["start"]
                 )
 
@@ -109,21 +117,16 @@ class GraphStorage:
             }
 
     def query(self, user_id: str, query_text: str):
-
         with self.driver.session() as session:
-
             result = session.run(
                 """
                 MATCH (u:User {id: $user_id})-[:UPLOADED]->(d:Document)
-
                 WHERE d.content CONTAINS $query_text
-                   OR d.name CONTAINS $query_text
-                   OR ANY(tag IN d.tags WHERE tag CONTAINS $query_text)
-
+                OR d.name CONTAINS $query_text
+                OR ANY(tag IN d.tags WHERE tag CONTAINS $query_text)
                 OPTIONAL MATCH (d)-[:MENTIONS]->(e:Entity)
-
-                RETURN d, COLLECT(DISTINCT e) as entities
-
+                WITH d, COLLECT(DISTINCT e) as entities
+                RETURN d, entities
                 LIMIT 10
                 """,
                 user_id=user_id,
@@ -131,11 +134,8 @@ class GraphStorage:
             )
 
             results = []
-
             for record in result:
-
                 doc = record["d"]
-
                 entities = record["entities"]
 
                 results.append({
@@ -157,6 +157,30 @@ class GraphStorage:
                 })
 
             return results
+
+    def list_documents(self, user_id: str):
+        with self.driver.session() as session:
+            result = session.run(
+                """
+                MATCH (u:User {id: $user_id})-[:UPLOADED]->(d:Document)
+                OPTIONAL MATCH (d)-[:MENTIONS]->(e:Entity)
+                RETURN d, COLLECT(DISTINCT e) as entities
+                LIMIT 10
+                """,
+                user_id=user_id
+            )
+            documents = []
+            for record in result:
+                doc = record["d"]
+                documents.append({
+                    "id": doc["id"],
+                    "name": doc["name"],
+                    "content_preview": doc["content"][:200],
+                    "upload_time": doc["upload_time"].isoformat()
+                    if hasattr(doc["upload_time"], "isoformat")
+                    else str(doc["upload_time"])
+                })
+            return documents
 
     def close(self):
         self.driver.close()
