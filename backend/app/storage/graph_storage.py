@@ -27,6 +27,7 @@ class GraphStorage:
         if self.model is None:
             return []
         doc = self.model(text)
+        logger.info(f"extracted doc: {doc}")
         return [
             {"text": ent.text, "label": ent.label_,
                 "start": ent.start_char, "end": ent.end_char}
@@ -114,8 +115,7 @@ class GraphStorage:
                     entity_name=entity["text"],
                     entity_type=entity["label"],
                     document_id=document_id,
-                    context=content[max(0, entity["start"] - 50)
-                                        :entity["end"] + 50],
+                    context=content[max(0, entity["start"] - 50):entity["end"] + 50],
                     position=entity["start"]
                 )
                 entity_count += 1
@@ -130,21 +130,41 @@ class GraphStorage:
         }
 
     def query(self, user_id: str, query_text: str):
+        query_entities = self.extract_entities(query_text)
+
         with self.driver.session() as session:
-            result = session.run(
-                """
-                MATCH (u:User {id: $user_id})-[:UPLOADED]->(d:Document)
-                WHERE d.content CONTAINS $query_text
-                OR d.name CONTAINS $query_text
-                OR ANY(tag IN d.tags WHERE tag CONTAINS $query_text)
-                OPTIONAL MATCH (d)-[:MENTIONS]->(e:Entity)
-                WITH d, COLLECT(DISTINCT e) as entities
-                RETURN d, entities
-                LIMIT 10
-                """,
-                user_id=user_id,
-                query_text=query_text
-            )
+            if query_entities:
+                entity_names = [e["text"] for e in query_entities]
+
+                result = session.run(
+                    """
+                    MATCH (u:User {id: $user_id})-[:UPLOADED]->(d:Document)
+                    MATCH (d)-[:MENTIONS]->(e:Entity)
+                    WHERE e.name IN $entity_names
+                    WITH d, COLLECT(DISTINCT e) as entities, COUNT(DISTINCT e) as entity_matches
+                    RETURN d, entities
+                    ORDER BY entity_matches DESC
+                    LIMIT 10
+                    """,
+                    user_id=user_id,
+                    entity_names=entity_names
+                )
+            else:
+                result = session.run(
+                    """
+                    MATCH (u:User {id: $user_id})-[:UPLOADED]->(d:Document)
+                    WHERE d.content CONTAINS $query_text
+                    OR d.name CONTAINS $query_text
+                    OR ANY(tag IN d.tags WHERE tag CONTAINS $query_text)
+                    OPTIONAL MATCH (d)-[:MENTIONS]->(e:Entity)
+                    WITH d, COLLECT(DISTINCT e) as entities
+                    RETURN d, entities
+                    LIMIT 10
+                    """,
+                    user_id=user_id,
+                    query_text=query_text
+                )
+
             results = []
             for record in result:
                 doc = record["d"]

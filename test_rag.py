@@ -23,7 +23,7 @@ def print_error(response=None, exception=None):
 
 def safe_request(method, url, **kwargs):
     try:
-        response = requests.request(method, url, timeout=10, **kwargs)
+        response = requests.request(method, url, timeout=100, **kwargs)
         if not response.ok:
             print_error(response=response)
             return None
@@ -96,6 +96,8 @@ def rag_query(query, use_vector=True, use_graph=True, top_k=3):
         print(f"ANSWER:")
         print(result.get("response"))
         print(f"Context used: {result.get('context_used', {})}")
+
+    print("\n\n")
 
     return result
 
