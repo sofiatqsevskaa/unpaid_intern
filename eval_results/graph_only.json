@@ -10,20 +10,20 @@
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer is incorrect as it states it does not know the answer, while the ground truth provides a specific answer."
+    "reason": "The model answer is incorrect as it states it does not know the answer, while the ground truth provides the correct information."
   },
   {
     "index": 1,
     "mode": "graph_only",
     "question": "What are some of the potential negative impacts of charity as discussed in the context?",
     "ground_truth": "The context discusses that charity can sometimes exacerbate problems rather than solve them. It can delay permanent infrastructure and job development, and in some cases, it can lead to mismanagement of funds. The context also mentions the situation in Haiti where an influx of donated rice and solar panels disrupted local businesses, making the local economy dependent on foreign aid. This is described as unsustainable and unethical. Furthermore, charity can also allow companies to overlook problems in their supply chain or company culture, as they can claim responsibility through their charitable actions.",
-    "model_answer": "Some potential negative impacts of charity include:\n\n1. Creating dependency and undermining self-reliance\n2. Perpetuating poverty by not addressing root causes\n3. Fostering a sense of superiority in donors and inferiority in recipients\n4. Being used as a tool for political or religious influence\n5. Diverting attention from systemic issues and structural inequalities\n6. Potentially being inefficient or mismanaged\n7. Creating a cycle of aid that is difficult to break",
+    "model_answer": "Some potential negative impacts of charity include creating dependency, undermining local economies, and perpetuating a cycle of poverty.",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 0
     },
-    "score": 0,
-    "reason": "The model answer includes points not mentioned in the ground truth, such as creating dependency, fostering superiority/inferiority, and being used for political or religious influence, which are not discussed in the provided context."
+    "score": 1,
+    "reason": "The model answer correctly identifies key negative impacts of charity, such as creating dependency and undermining local economies, which align with the ground truth."
   },
   {
     "index": 2,
@@ -36,7 +36,7 @@
       "graph_results_count": 10
     },
     "score": 0,
-    "reason": "The model answer does not provide the correct information and instead states it does not know."
+    "reason": "The model answer does not provide the correct information and instead claims to lack knowledge."
   },
   {
     "index": 3,
@@ -49,7 +49,7 @@
       "graph_results_count": 1
     },
     "score": 0,
-    "reason": "The model answer is too vague and does not list the specific services offered."
+    "reason": "The model answer is too vague and does not specify the services offered."
   },
   {
     "index": 4,
@@ -62,20 +62,20 @@
       "graph_results_count": 2
     },
     "score": 0,
-    "reason": "The model answer is incomplete and does not fully address the question."
+    "reason": "The model answer is incomplete and does not address the question fully."
   },
   {
     "index": 5,
     "mode": "graph_only",
     "question": "What is the person seeking in the context?",
     "ground_truth": "The person is seeking a woman who wants to watch him on cam, and a real lady in his life, not a little girl.",
-    "model_answer": "I don't have enough information to answer that.",
+    "model_answer": "The person is seeking a way to make money.",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer does not provide any factual information and instead states it does not know."
+    "reason": "The model answer is incorrect and does not address the question."
   },
   {
     "index": 6,
@@ -108,13 +108,13 @@
     "mode": "graph_only",
     "question": "What are the potential issues if a new fence is not stored properly before processing?",
     "ground_truth": "If a new fence is not stored properly before processing, various problems may appear on the pipe surface such as white powder, rust, and so on. Although these can be handled with grinding and pickling steps, it will add to the later production sector burden, indirectly increasing production costs.",
-    "model_answer": "I don't have enough information to answer that.",
+    "model_answer": "If a new fence is not stored properly before processing, it may be damaged by the elements, such as rain, wind, or sun, which can cause warping, cracking, or discoloration. Additionally, improper storage can lead to the fence being exposed to pests or animals, which can cause further damage.",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer states it does not know, which is incorrect as the ground truth provides specific information about potential issues."
+    "reason": "The model answer discusses damage from elements and pests, which is not mentioned in the ground truth and does not address the specific issues of white powder, rust, and increased production costs."
   },
   {
     "index": 9,
@@ -140,20 +140,20 @@
       "graph_results_count": 2
     },
     "score": 0,
-    "reason": "The model answer does not provide any information about attractions in Tallaght, Ireland."
+    "reason": "The model answer is incorrect as it states it does not know, while the ground truth provides specific attractions in Tallaght, Ireland."
   },
   {
     "index": 11,
     "mode": "graph_only",
     "question": "What change was made to the order return process in the \"Interchange\" project?",
     "ground_truth": "If someone tries to do an order return for an order that's not their own, they are now redirected to their order return list page instead of getting a 404 error.",
-    "model_answer": "The change made to the order return process in the \"Interchange\" project was the addition of a new \"Return\" button on the order details page, which allows customers to initiate a return request directly from the order details page.",
+    "model_answer": "The change made to the order return process in the \"Interchange\" project was that the return process was changed to be initiated by the customer, rather than by the seller.",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer describes a different change than the ground truth, focusing on a new button rather than redirecting users to their order return list page."
+    "reason": "The model answer does not match the ground truth and provides incorrect information about the change made to the order return process."
   },
   {
     "index": 12,
@@ -166,7 +166,7 @@
       "graph_results_count": 1
     },
     "score": 0,
-    "reason": "The model answer does not provide the factual reason for the Stryker hip recall and instead claims lack of information."
+    "reason": "The model answer states it does not know, which is incorrect as the ground truth provides the reason for the recall."
   },
   {
     "index": 13,
@@ -199,13 +199,13 @@
     "mode": "graph_only",
     "question": "What role should intellectuals play in a new dispensation according to the context?",
     "ground_truth": "In a new dispensation, intellectuals should provide leadership and critical advice regarding the consolidation of freedom, contribute to the development of ideas and construct intellectual frameworks that guide national debates. They should stand for what is best for the country, defend and protect human rights, and speak truth to power when necessary. They should also insist on autonomy for intellectual activities and reconnect with the masses.",
-    "model_answer": "According to the context, intellectuals should play a role in a new dispensation by being \"the vanguard of the people\" and \"the conscience of the nation\".",
+    "model_answer": "According to the context, intellectuals should play a role in a new dispensation by being involved in the process of change and transformation.",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer does not fully address the specific roles intellectuals should play, such as providing leadership, contributing to ideas, defending human rights, and insisting on autonomy."
+    "reason": "The model answer is too vague and does not address the specific roles intellectuals should play as outlined in the ground truth."
   },
   {
     "index": 16,
@@ -218,7 +218,7 @@
       "graph_results_count": 5
     },
     "score": 0,
-    "reason": "The model answer does not provide a factual response and instead claims lack of information."
+    "reason": "The model answer does not provide any factual information and instead states it does not know."
   },
   {
     "index": 17,
@@ -231,7 +231,7 @@
       "graph_results_count": 1
     },
     "score": 0,
-    "reason": "The model answer is incorrect as it states it does not know the information, while the ground truth provides a specific win rate of 93.75%."
+    "reason": "The model answer is incorrect as it states it does not know the information, while the ground truth provides a specific win rate."
   },
   {
     "index": 18,
@@ -270,20 +270,20 @@
       "graph_results_count": 1
     },
     "score": 0,
-    "reason": "The model answer does not provide any information and instead states it does not know."
+    "reason": "The model answer does not provide any factual information and instead states it does not know."
   },
   {
     "index": 21,
     "mode": "graph_only",
     "question": "What are the qualities that ripped, distressed jeans show according to the context?",
     "ground_truth": "Ripped, distressed jeans show personality, style, and versatility.",
-    "model_answer": "Ripped, distressed jeans show a casual, laid-back attitude and a sense of rebellion.",
+    "model_answer": "Ripped, distressed jeans show a \"carefree attitude\" and \"rebellious spirit.\"",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer does not match the ground truth and introduces new qualities not mentioned in the context."
+    "reason": "The model answer does not match the ground truth and introduces unrelated qualities."
   },
   {
     "index": 22,
@@ -316,13 +316,13 @@
     "mode": "graph_only",
     "question": "When and where was Shirley Lenora Rost born?",
     "ground_truth": "Shirley Lenora Rost was born on Oct. 20, 1938 in West Plains, Mo.",
-    "model_answer": "Shirley Lenora Rost was born on October 20, 1938, in West Plains, Missouri.",
+    "model_answer": "Shirley Lenora Rost was born on October 20, 1938 in West Plains, Missouri.",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 1
     },
     "score": 1,
-    "reason": "The model answer is factually correct and matches the ground truth."
+    "reason": "The model answer is factually correct and addresses the question."
   },
   {
     "index": 25,
@@ -335,7 +335,7 @@
       "graph_results_count": 1
     },
     "score": 1,
-    "reason": "The model answer correctly identifies Yeshua (Jesus) as the figure Moses was a 'picture' of, aligning with the ground truth."
+    "reason": "The model answer correctly identifies Yeshua (Jesus) as the subject Moses was a 'picture' of, aligning with the ground truth."
   },
   {
     "index": 26,
@@ -348,20 +348,20 @@
       "graph_results_count": 1
     },
     "score": 0,
-    "reason": "The model answer states it does not know, which is incorrect as the ground truth provides detailed specifications."
+    "reason": "The model answer states it does not know, which is incorrect as the ground truth provides specific details about the camera specifications."
   },
   {
     "index": 27,
     "mode": "graph_only",
     "question": "What is the general impression of Bloc Party's album \"Four\" according to the context?",
     "ground_truth": "The album \"Four\" by Bloc Party is generally well-received. It is seen as a collection of songs that are lucky to exist considering the band\u2019s recent history. The album feels like a team effort and doesn't contain any of the electronica that the lead singer indulged in over the past few years. It is a combination of hard-rock and touching, sombre, indie ballads which works well and never falters throughout the album\u2019s 43 minute running time. The only flaw mentioned is the minimalistic cover art which undermines the record\u2019s visual impact.",
-    "model_answer": "The general impression of Bloc Party's album \"Four\" according to the context is positive, as the author states they \"should never have doubted\" the band's return after a four-year hiatus.",
+    "model_answer": "The general impression of Bloc Party's album \"Four\" is positive, with the reviewer expressing that they \"should never have doubted\" the band's return after a four-year hiatus.",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 1
     },
     "score": 0,
-    "reason": "The model answer does not fully capture the detailed positive impression of the album, including its reception, musical style, and the only flaw mentioned."
+    "reason": "The model answer does not fully capture the detailed positive reception and specific characteristics of the album as described in the ground truth."
   },
   {
     "index": 28,
@@ -374,7 +374,7 @@
       "graph_results_count": 1
     },
     "score": 0,
-    "reason": "The model answer states it does not know, which is incorrect as the ground truth provides the answer."
+    "reason": "The model answer does not provide the correct information and instead states it does not know."
   },
   {
     "index": 29,
@@ -387,7 +387,7 @@
       "graph_results_count": 1
     },
     "score": 0,
-    "reason": "The model answer does not provide the correct information and instead states it does not know."
+    "reason": "The model answer states it does not know, which is incorrect as the ground truth provides the objectives of the study."
   },
   {
     "index": 30,
@@ -407,13 +407,13 @@
     "mode": "graph_only",
     "question": "What is the \"Ten Items or Less\" Rule in the game context described?",
     "ground_truth": "The \"Ten Items or Less\" Rule in the game context described allows players to get basic items and armor for free, up to light armor and any one-handed item. Additionally, players can choose ten items from the equipment table for free. These items can be anything from a bedroll, torches, waterskin, flask, ropes, tent, blanket, pole, hammer, rations, etc. The rule is designed to simplify the game and encourage creativity among players. After selecting these items, all the player's gold is gone and they receive 1d6x10 silver instead.",
-    "model_answer": "The \"Ten Items or Less\" Rule in the game context described is that players can only carry ten items at a time, including weapons, armor, and other equipment.",
+    "model_answer": "The \"Ten Items or Less\" Rule states that if a player has more than ten cards in their hand at the end of their turn, they must discard down to ten cards.",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer incorrectly describes the rule as a carrying limit, whereas the ground truth specifies it as a method to obtain free items and gold conversion."
+    "reason": "The model answer describes a different rule unrelated to the game context provided in the ground truth."
   },
   {
     "index": 32,
@@ -426,27 +426,27 @@
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer does not provide the correct information and instead states it does not know."
+    "reason": "The model answer does not provide the correct information and instead claims to lack knowledge."
   },
   {
     "index": 33,
     "mode": "graph_only",
     "question": "What is the required experience and skills for the Lead Hadoop Developer position in Bellevue, WA?",
     "ground_truth": "The Lead Hadoop Developer position requires at least 5+ years of solid experience in the software industry with strong experience in Big Data Technologies. The candidate should have strong expertise in Big data technologies with a focus on Hortonworks, Kafka, Flume, Sqoop, Hive, Pig, Map Reduce, Spark, Storm, J2EE and related technologies. They should also have strong Unix Scripting skills, be comfortable with Agile methodologies, have good knowledge of Data warehouse and BI technologies, exposure to ETL and Reporting tools like Teradata, excellent communication skills, expertise in SQL databases (e.g. MySQL or Oracle) and strong ability to write SQL queries. Selected candidates should bring their own laptops.",
-    "model_answer": "The required experience and skills for the Lead Hadoop Developer position in Bellevue, WA are not fully provided in the given context. However, it is mentioned that the candidate should have at least 5+ years of solid experience in the software development field.",
+    "model_answer": "The required experience for the Lead Hadoop Developer position in Bellevue, WA is at least 5+ years of solid experience in the software development field.",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 1
     },
     "score": 0,
-    "reason": "The model answer is incomplete and does not provide the full required experience and skills for the Lead Hadoop Developer position."
+    "reason": "The model answer is incomplete and does not address the full scope of required skills and technologies for the position."
   },
   {
     "index": 34,
     "mode": "graph_only",
     "question": "What is Sandy Sloane's profession and what are her notable works?",
     "ground_truth": "Sandy Weinberger-Sloane is the Lead Consultant and President of Solutions by Sloane, a workforce training and development/special events/public relations company. She has worked in the public and private sectors focusing on workforce development, employee engagement, special events, and public relations. She is also a journalist and the lead writer for the Democrat & Chronicle\u2019s weekly Woman to Watch column. She has written parenting articles and four children\u2019s books.",
-    "model_answer": "Sandy Sloane is a writer and editor. Her notable works include \"The Art of the Personal Essay\" and \"The Best American Essays\".",
+    "model_answer": "Sandy Sloane is a freelance writer and editor. Her notable works include \"The Art of Writing\" and \"The Power of Editing\".",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 0
@@ -459,39 +459,39 @@
     "mode": "graph_only",
     "question": "What are some of the services offered by Kimpton Hotel Monaco in Salt Lake City?",
     "ground_truth": "Kimpton Hotel Monaco Salt Lake City offers guests boutique service, a cool vibe and easy access to a host of regional attractions.",
-    "model_answer": "The Kimpton Hotel Monaco in Salt Lake City offers a variety of services, including a 24-hour fitness center, a 24-hour business center, and a restaurant called Bambara. The hotel also provides complimentary Wi-Fi, a concierge service, and a 24-hour front desk. Additionally, the hotel offers valet parking and a shuttle service to nearby attractions.",
-    "context_used": {
-      "vector_results_count": 0,
-      "graph_results_count": 0
-    },
-    "score": 0,
-    "reason": "The model answer includes services not mentioned in the ground truth, such as a 24-hour fitness center, business center, restaurant, and shuttle service, which are not factually supported by the ground truth."
-  },
-  {
-    "index": 36,
-    "mode": "graph_only",
-    "question": "What is the strategy the shy person uses to flirt with girls at work?",
-    "ground_truth": "The shy person's strategy involves a process of gradually increasing familiarity. It starts with smiling upon making eye contact, then progresses to a wave and a smile, and finally to saying \"Hi\" when passing by closely. The final phase is to give a compliment, now that the girl recognizes him and he doesn't seem like a stranger.",
-    "model_answer": "The shy person uses the strategy of making eye contact with girls at work and then looking away when they look back.",
-    "context_used": {
-      "vector_results_count": 0,
-      "graph_results_count": 0
-    },
-    "score": 0,
-    "reason": "The model answer only describes the initial step of making eye contact and looking away, which is incomplete compared to the ground truth's detailed progression of steps."
-  },
-  {
-    "index": 37,
-    "mode": "graph_only",
-    "question": "What is the name of the book series by Charles de Lint that the author of the context recommends?",
-    "ground_truth": "The author recommends the Newford series by Charles de Lint.",
     "model_answer": "I don't have enough information to answer that.",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer does not provide the correct information and instead claims to lack knowledge."
+    "reason": "The model answer does not provide any information about the services offered by Kimpton Hotel Monaco in Salt Lake City."
+  },
+  {
+    "index": 36,
+    "mode": "graph_only",
+    "question": "What is the strategy the shy person uses to flirt with girls at work?",
+    "ground_truth": "The shy person's strategy involves a process of gradually increasing familiarity. It starts with smiling upon making eye contact, then progresses to a wave and a smile, and finally to saying \"Hi\" when passing by closely. The final phase is to give a compliment, now that the girl recognizes him and he doesn't seem like a stranger.",
+    "model_answer": "I don't have enough information to answer that.",
+    "context_used": {
+      "vector_results_count": 0,
+      "graph_results_count": 0
+    },
+    "score": 0,
+    "reason": "The model answer does not provide any information and instead states it does not know."
+  },
+  {
+    "index": 37,
+    "mode": "graph_only",
+    "question": "What is the name of the book series by Charles de Lint that the author of the context recommends?",
+    "ground_truth": "The author recommends the Newford series by Charles de Lint.",
+    "model_answer": "The Newford series",
+    "context_used": {
+      "vector_results_count": 0,
+      "graph_results_count": 0
+    },
+    "score": 1,
+    "reason": "The model answer correctly identifies the Newford series as the book series by Charles de Lint recommended by the author."
   },
   {
     "index": 38,
@@ -504,7 +504,7 @@
       "graph_results_count": 1
     },
     "score": 0,
-    "reason": "The model answer states it does not know, which is incorrect as the ground truth provides a specific date."
+    "reason": "The model answer is incorrect as it states it does not know the information, while the ground truth provides a specific date."
   },
   {
     "index": 39,
@@ -517,14 +517,14 @@
       "graph_results_count": 4
     },
     "score": 0,
-    "reason": "The model answer does not provide any information about the 2013 Mercedes-Benz SL model and instead states it does not know."
+    "reason": "The model answer does not provide any information about the new features of the 2013 Mercedes-Benz SL model."
   },
   {
     "index": 40,
     "mode": "graph_only",
     "question": "What is the distance and vertical gain of the Tamarack Lake Hike?",
     "ground_truth": "The distance of the Tamarack Lake Hike is 7.8 miles and the vertical gain is 450'.",
-    "model_answer": "The distance of the Tamarack Lake Hike is 11 miles and the vertical gain is 2,200 feet.",
+    "model_answer": "The distance of the Tamarack Lake Hike is 11 miles round trip with a vertical gain of 1,800 feet.",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 0
@@ -550,13 +550,13 @@
     "mode": "graph_only",
     "question": "What is the challenge mentioned in the context?",
     "ground_truth": "The challenge mentioned in the context is to \"find one thing for every letter of the alphabet that you\u2019re thankful for.\"",
-    "model_answer": "The challenge mentioned in the context is the need to develop a new generation of leaders who can navigate the complexities of the modern world and drive positive change.",
+    "model_answer": "The challenge mentioned in the context is to develop a new generation of high-performance, low-cost, and environmentally friendly materials for energy storage and conversion applications.",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer does not match the ground truth and introduces unrelated content."
+    "reason": "The model answer does not match the ground truth and provides unrelated information."
   },
   {
     "index": 43,
@@ -569,33 +569,33 @@
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer correctly identifies benefits of using wall letters in decorating a baby's room."
+    "reason": "The model answer correctly identifies benefits of using wall letters in decorating a baby's room, including adding a personal touch, creating a focal point, and providing a fun and educational element."
   },
   {
     "index": 44,
     "mode": "graph_only",
     "question": "What were the trends discussed in the 2017 Information Management Symposium for data analysis in the health insurance industry?",
     "ground_truth": "The trends discussed in the 2017 Information Management Symposium for data analysis in the health insurance industry were artificial intelligence, curated data visualization and aligning business with technology and government partnerships to source the right data.",
-    "model_answer": "The 2017 Information Management Symposium discussed the trend of turning insight into action for data analysis in the health insurance industry, as summed up by Jeff Cribbs of Gartner.",
+    "model_answer": "I don't have enough information to answer that.",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 3
     },
     "score": 0,
-    "reason": "The model answer does not mention the key trends discussed in the 2017 Information Management Symposium, such as artificial intelligence, curated data visualization, and aligning business with technology and government partnerships."
+    "reason": "The model answer states it does not know, which is incorrect as the ground truth provides specific trends."
   },
   {
     "index": 45,
     "mode": "graph_only",
     "question": "Who is expected to curb the threat of Donegal dangerwoman Geraldine McLaughlin in the National League opener?",
     "ground_truth": "All Star corner back Mairead Tennyson is expected to curb the threat of Donegal dangerwoman Geraldine McLaughlin in the National League opener.",
-    "model_answer": "Mairead Tennyson is expected to curb the threat of Donegal dangerwoman Geraldine McLaughlin in the National League opener.",
+    "model_answer": "Mairead Tennyson",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 1
     },
     "score": 1,
-    "reason": "The model answer is factually correct and addresses the question."
+    "reason": "The model answer correctly identifies Mairead Tennyson as the player expected to curb the threat of Geraldine McLaughlin."
   },
   {
     "index": 46,
@@ -634,19 +634,19 @@
       "graph_results_count": 1
     },
     "score": 0,
-    "reason": "The model answer does not provide the correct information and instead claims to lack knowledge."
+    "reason": "The model answer is incorrect as it states it does not know, while the ground truth provides a specific answer."
   },
   {
     "index": 49,
     "mode": "graph_only",
     "question": "What is the main goal of the Center for Youth and Community and PERMIE KIDs?",
     "ground_truth": "The main goal of the Center for Youth and Community and PERMIE KIDs is to help communities re-connect with the wisdom within to establish regenerative youth and community development through rites of passage experiences.",
-    "model_answer": "The main goal of the Center for Youth and Community and PERMIE KIDs is to re-connect with the wisdom within to establish regenerative youth and community development through online materials and collaborative video webinars.",
+    "model_answer": "The main goal of the Center for Youth and Community and PERMIE KIDs is to re-connect with the wisdom within to establish regenerative youth and community development through online materials and collaborative \"electronic campfires\" (video webinars).",
     "context_used": {
       "vector_results_count": 0,
       "graph_results_count": 1
     },
-    "score": 0,
-    "reason": "The model answer includes incorrect details about online materials and collaborative video webinars, which are not mentioned in the ground truth."
+    "score": 1,
+    "reason": "The model answer correctly identifies the main goal of re-connecting with wisdom to establish regenerative youth and community development, though it adds specific methods like online materials and webinars."
   }
 ]
