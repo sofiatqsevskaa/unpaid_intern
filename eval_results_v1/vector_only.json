@@ -10,20 +10,20 @@
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer is factually correct and matches the ground truth."
+    "reason": "The model answer is factually correct and directly addresses the question."
   },
   {
     "index": 1,
     "mode": "vector_only",
     "question": "What are some of the potential negative impacts of charity as discussed in the context?",
     "ground_truth": "The context discusses that charity can sometimes exacerbate problems rather than solve them. It can delay permanent infrastructure and job development, and in some cases, it can lead to mismanagement of funds. The context also mentions the situation in Haiti where an influx of donated rice and solar panels disrupted local businesses, making the local economy dependent on foreign aid. This is described as unsustainable and unethical. Furthermore, charity can also allow companies to overlook problems in their supply chain or company culture, as they can claim responsibility through their charitable actions.",
-    "model_answer": "Some potential negative impacts of charity as discussed in the context include: it can be a bandaid placed on broken systems, it may not correct underlying systemic issues, and sometimes it can make things worse.",
+    "model_answer": "Charity can sometimes make things worse by not addressing underlying systemic issues.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer correctly identifies potential negative impacts of charity as discussed in the context."
+    "reason": "The model answer correctly identifies that charity can exacerbate problems by not addressing systemic issues, which aligns with the ground truth."
   },
   {
     "index": 2,
@@ -36,33 +36,33 @@
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer does not provide the correct information and instead claims to lack knowledge."
+    "reason": "The model answer does not provide the correct information and instead states it does not know."
   },
   {
     "index": 3,
     "mode": "vector_only",
     "question": "What services does Pearl Moving Company in Santa Clarita, 91390 offer?",
     "ground_truth": "Pearl Moving Company Santa Clarita, 91390 offers services such as apartment moving, local moving, office moving, out of state moving, professional moving, cheap moving, long distance moving, commercial moving, and furniture moving.",
-    "model_answer": "Pearl Moving Company in Santa Clarita, 91390 offers a variety of moving services including apartment movers, local movers, office moves, home movers, out of state movers, professional movers, moving companies, cheap movers, movers reviews, movers cost, home moving companies, moving and storage companies, long distance moving company, moving company reviews, commercial movers, moving quotes, local moving companies, local moving company, best moving companies, piano movers, city movers, long distance movers, and furniture movers.",
+    "model_answer": "Pearl Moving Company in Santa Clarita, 91390 offers a variety of moving services including apartment movers, local movers, moving company, moving services, office move, home movers, out of state movers, professional movers, moving companies, cheap movers, movers reviews, movers cost, home moving companies, moving and storage companies, long distance moving company, moving company reviews, commercial movers, moving quotes, local moving companies, local moving, best moving companies, piano movers, city movers, long distance movers, and furniture movers.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer includes all the services mentioned in the ground truth and provides additional relevant details."
+    "reason": "The model answer includes all the services mentioned in the ground truth and additional relevant services."
   },
   {
     "index": 4,
     "mode": "vector_only",
     "question": "What are the responsibilities of a Senior Planning Engineer in London, United Kingdom?",
     "ground_truth": "The responsibilities of a Senior Planning Engineer in London, United Kingdom include providing Integrated Planning and general Project Controls support to the Project, developing and maintaining integrated schedules of all Project related activities, preparing and maintaining progress reporting of major contract packages and overall project, analysing, auditing and verifying contractor progress reports, evaluating the impact of project change upon schedule, risk analysis of schedule activity, and providing Project Control support to delivery teams and function.",
-    "model_answer": "The responsibilities of a Senior Planning Engineer in London, United Kingdom are to develop and maintain integrated schedules of all Project related activities, prepare and maintain progress reporting of major contract packages and overall project, analyse, audit and verify contractor progress reports, evaluate the impact of project change upon schedule, and perform risk analysis of schedule activity.",
+    "model_answer": "The responsibilities of a Senior Planning Engineer in London, United Kingdom include:\n\n- Develop and maintain integrated schedules of all Project related activities\n- Prepare and maintain progress reporting of major contract packages and overall project\n- Analyse, audit and verify contractor progress reports\n- Evaluate the impact of project change upon schedule\n- Risk analysis of schedule activity",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer accurately reflects the core responsibilities of a Senior Planning Engineer in London, United Kingdom as described in the ground truth."
+    "reason": "The model answer correctly lists the responsibilities of a Senior Planning Engineer in London, United Kingdom, matching the ground truth."
   },
   {
     "index": 5,
@@ -88,7 +88,7 @@
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer correctly identifies Grasse Cathedral as the most notable landmark and provides additional accurate details."
+    "reason": "The model answer correctly identifies the Grasse Cathedral as the most notable landmark and provides additional accurate details."
   },
   {
     "index": 7,
@@ -108,13 +108,13 @@
     "mode": "vector_only",
     "question": "What are the potential issues if a new fence is not stored properly before processing?",
     "ground_truth": "If a new fence is not stored properly before processing, various problems may appear on the pipe surface such as white powder, rust, and so on. Although these can be handled with grinding and pickling steps, it will add to the later production sector burden, indirectly increasing production costs.",
-    "model_answer": "If a new fence is not stored properly before processing, it can lead to various problems such as white powder, rust, and other issues on the pipe surface. This can increase production costs and burden the later production sector.",
+    "model_answer": "If a new fence is not stored properly before processing, it can lead to various problems such as white powder, rust, and other issues on the pipe surface. This can increase production costs and burden the later production sector. Additionally, improper storage can cause rust traces, white spots, and extrusion deformation of the pipe.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer correctly identifies the potential issues of white powder and rust on the pipe surface and mentions the increased production costs and burden on the later production sector, aligning with the ground truth."
+    "reason": "The model answer correctly identifies the potential issues of improper storage, including white powder, rust, and other problems, and mentions the impact on production costs and burden, aligning with the ground truth."
   },
   {
     "index": 9,
@@ -192,20 +192,20 @@
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer does not provide any information and instead states it does not know."
+    "reason": "The model answer does not provide any information and fails to address the question."
   },
   {
     "index": 15,
     "mode": "vector_only",
     "question": "What role should intellectuals play in a new dispensation according to the context?",
     "ground_truth": "In a new dispensation, intellectuals should provide leadership and critical advice regarding the consolidation of freedom, contribute to the development of ideas and construct intellectual frameworks that guide national debates. They should stand for what is best for the country, defend and protect human rights, and speak truth to power when necessary. They should also insist on autonomy for intellectual activities and reconnect with the masses.",
-    "model_answer": "In this new dispensation, our intellectuals must play the role expected, of providing leadership and critical advice regarding the consolidation of the freedom we have won for ourselves, contributing to the development of ideas and constructing intellectual frameworks that would guide national debates.",
+    "model_answer": "According to the context, intellectuals should play the role of providing leadership and critical advice regarding the consolidation of the freedom won, contributing to the development of ideas, and constructing intellectual frameworks that would guide national debates.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer accurately reflects the ground truth by emphasizing the role of intellectuals in providing leadership, critical advice, and contributing to the development of ideas and intellectual frameworks."
+    "reason": "The model answer accurately reflects the ground truth by highlighting the roles of intellectuals in providing leadership, critical advice, and contributing to intellectual frameworks."
   },
   {
     "index": 16,
@@ -225,13 +225,13 @@
     "mode": "vector_only",
     "question": "What is the win rate of the betting play on the mini-baccarat tables in Indianapolis, Indiana?",
     "ground_truth": "The win rate of the betting play on the mini-baccarat tables in Indianapolis, Indiana is 93.75%.",
-    "model_answer": "The win rate of the betting play on the mini-baccarat tables in Indianapolis, Indiana is 93.75%. [Chunk 3 from doc_0017.txt]",
+    "model_answer": "The win rate of the betting play on the mini-baccarat tables in Indianapolis, Indiana is 93.75%.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer is factually correct and matches the ground truth."
+    "reason": "The model answer matches the ground truth exactly."
   },
   {
     "index": 18,
@@ -264,13 +264,13 @@
     "mode": "vector_only",
     "question": "What is the purpose of the Music Coope?",
     "ground_truth": "The Music Coope is a family of musicians dedicated to being their brother\u2019s (or sister\u2019s) keeper. It is about cooperation, believing artists will render their purest and best work in the context of community. Music Coope artists are using principles of pooling financial and intellectual resources to create, promote and release their music while intentionally breaking down communication barriers between artists and their fans.",
-    "model_answer": "The purpose of the Music Coope is to offer fans an opportunity of membership at a low monthly cost, providing benefits such as free monthly downloads, free annual compilation CD featuring Coope artists, video diaries and interviews with Coope artists, and monthly newsletters. It also aims to create a marketplace that is less \"hustle\" with more \"flow\" by breaking down communication barriers between artists and their fans.",
+    "model_answer": "The purpose of the Music Coope is to create, promote, and release music while breaking down communication barriers between artists and fans, and fostering integrity-based relationships with each other and fans of their work.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer accurately describes the purpose of the Music Coope, including its benefits and goals."
+    "reason": "The model answer accurately captures the purpose of the Music Coope as described in the ground truth."
   },
   {
     "index": 21,
@@ -283,7 +283,7 @@
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer is factually correct and matches the ground truth."
+    "reason": "The model answer matches the ground truth exactly."
   },
   {
     "index": 22,
@@ -303,13 +303,13 @@
     "mode": "vector_only",
     "question": "What is the movie \"Wassup Rockers\" based on?",
     "ground_truth": "The movie \"Wassup Rockers\" is partially based on the real lives of its actors, who are young Latino skateboarders from Los Angeles\u2019 South Central ghetto. The first half of the film reflects their lives in South Central, and all those stories are their stories. The second half of the film is made up by the director.",
-    "model_answer": "The movie \"Wassup Rockers\" is based on the real lives of its actors, who are young Latino skateboarders from Los Angeles' South Central ghetto. The first half of the film reflects their real stories, while the second half is fictional.",
+    "model_answer": "\"Wassup Rockers\" is based on the real lives of its actors, who are young Latino skateboarders from Los Angeles' South Central ghetto. The first half of the film reflects their actual stories, while the second half is fictional, depicting what might happen if they went to Beverly Hills and encountered rich white girls and their boyfriends.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer accurately reflects the ground truth information about the movie's basis on real lives and the distinction between the first and second halves of the film."
+    "reason": "The model answer accurately reflects the ground truth by stating the film is based on the real lives of its actors and distinguishing between the factual first half and the fictional second half."
   },
   {
     "index": 24,
@@ -322,46 +322,46 @@
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer is factually correct and addresses the question."
+    "reason": "The model answer is factually correct and matches the ground truth."
   },
   {
     "index": 25,
     "mode": "vector_only",
     "question": "Who was Moses a \"picture\" of according to John J. Parsons?",
     "ground_truth": "Moses was a \"picture\" of Yeshua according to John J. Parsons.",
-    "model_answer": "According to John J. Parsons, Moses was a \"picture\" of Yeshua (Jesus).",
+    "model_answer": "Moses was a \"picture\" of Yeshua according to John J. Parsons.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer is factually correct and directly addresses the question."
+    "reason": "The model answer is factually correct and matches the ground truth."
   },
   {
     "index": 26,
     "mode": "vector_only",
     "question": "What are some of the specifications of the camera that the author won from Camera House?",
     "ground_truth": "The camera has a CCD sensor with 13.8 Megapixels and light sensitivity of 1,600 ISO. It has an LCD screen of size 2.7\" and a resolution of 230k dots. The lens has a zoom of 8x, with a wide angle of 25 mm and a telephoto of 200 mm. The camera weighs 129 g and does not have interchangeable lenses. It supports video format of 720p @ 30fps and has a built-in flash. The storage supports formats like SD, SDXC, and SDHC.",
-    "model_answer": "The camera has a CCD sensor with a size of 1/2.3\" 6.2x4.6mm, 13.8 MP megapixels, light sensitivity of 1,600 ISO (boostable to 3,200 ISO), a true resolution of 9.7 MP, native resolution of 4288 x 3216, and a pixel size of 2 \u00b5m\u00b2. It also has a 2.7\" LCD screen with a resolution of 230k dots, an 8x zoom lens with a wide angle of 25 mm and a telephoto of 200 mm, and a macro focus of 5 cm.",
+    "model_answer": "The camera has a CCD sensor with a size of 1/2.3\" and 6.2x4.6mm, 13.8 MP megapixels, light sensitivity of 1,600 ISO (boostable to 3,200 ISO), a true resolution of 9.7 MP, native resolution of 4288 x 3216, and a pixel size of 2 \u00b5m\u00b2. It also has a 2.7\" LCD screen with a resolution of 230k dots, an 8x zoom lens with a wide angle of 25 mm and telephoto of 200 mm, and a macro focus of 5 cm.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer is missing several specifications mentioned in the ground truth, such as the camera's weight, lack of interchangeable lenses, video format, built-in flash, and supported storage formats."
+    "reason": "The model answer includes additional specifications not mentioned in the ground truth, such as pixel size and macro focus, and omits key details like weight, interchangeable lenses, video format, and storage formats."
   },
   {
     "index": 27,
     "mode": "vector_only",
     "question": "What is the general impression of Bloc Party's album \"Four\" according to the context?",
     "ground_truth": "The album \"Four\" by Bloc Party is generally well-received. It is seen as a collection of songs that are lucky to exist considering the band\u2019s recent history. The album feels like a team effort and doesn't contain any of the electronica that the lead singer indulged in over the past few years. It is a combination of hard-rock and touching, sombre, indie ballads which works well and never falters throughout the album\u2019s 43 minute running time. The only flaw mentioned is the minimalistic cover art which undermines the record\u2019s visual impact.",
-    "model_answer": "The general impression of Bloc Party's album \"Four\" is that it feels like a team effort, with classic Okereke lyrics and instrumentally diverse tracks. The album is lucky to exist considering the band's recent history, and it demonstrates their retained ability to create touching, sombre, indie ballads.",
+    "model_answer": "The general impression of Bloc Party's album \"Four\" is that it feels like a team effort, with great lyrics and instrumentals, and a combination of touching, sombre, indie ballads that work well throughout the album's 43 minute running time.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer accurately reflects the general impression of Bloc Party's album 'Four' as described in the ground truth."
+    "reason": "The model answer accurately reflects the general impression of the album as described in the ground truth."
   },
   {
     "index": 28,
@@ -387,7 +387,7 @@
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer does not provide the correct information and instead states it does not know."
+    "reason": "The model answer does not provide any factual information and instead states it does not know."
   },
   {
     "index": 30,
@@ -407,20 +407,20 @@
     "mode": "vector_only",
     "question": "What is the \"Ten Items or Less\" Rule in the game context described?",
     "ground_truth": "The \"Ten Items or Less\" Rule in the game context described allows players to get basic items and armor for free, up to light armor and any one-handed item. Additionally, players can choose ten items from the equipment table for free. These items can be anything from a bedroll, torches, waterskin, flask, ropes, tent, blanket, pole, hammer, rations, etc. The rule is designed to simplify the game and encourage creativity among players. After selecting these items, all the player's gold is gone and they receive 1d6x10 silver instead.",
-    "model_answer": "The \"Ten Items or Less\" Rule is a rule in a game context where players can get basic items and armor for free, up to light armor and any one-handed item. This rule is mentioned in Chunk 3 from doc_0031.txt.",
+    "model_answer": "The \"Ten Items or Less\" Rule in the game context described is a rule where players can get basic items and armor for free, up to light armor and any one-handed item. This rule is mentioned in Chunk 3 from doc_0031.txt.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
-    "score": 0,
-    "reason": "The model answer is incomplete and does not fully address the question by omitting key details such as the ability to choose ten items from the equipment table for free and the conversion of gold to silver."
+    "score": 1,
+    "reason": "The model answer correctly describes the 'Ten Items or Less' Rule as allowing players to get basic items and armor for free, up to light armor and any one-handed item."
   },
   {
     "index": 32,
     "mode": "vector_only",
     "question": "Who has been running and hiking up and down the hills?",
     "ground_truth": "Mom has been taking Torrey on this road and they are running and hiking up and down the hills.",
-    "model_answer": "Mom has been taking Torrey on this road and they are running and hiking up and down the hills.",
+    "model_answer": "Mom has been taking Torrey on this road and they are running and hiking up and down the hills. [Chunk 2 from doc_0032.txt]",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
@@ -433,13 +433,13 @@
     "mode": "vector_only",
     "question": "What is the required experience and skills for the Lead Hadoop Developer position in Bellevue, WA?",
     "ground_truth": "The Lead Hadoop Developer position requires at least 5+ years of solid experience in the software industry with strong experience in Big Data Technologies. The candidate should have strong expertise in Big data technologies with a focus on Hortonworks, Kafka, Flume, Sqoop, Hive, Pig, Map Reduce, Spark, Storm, J2EE and related technologies. They should also have strong Unix Scripting skills, be comfortable with Agile methodologies, have good knowledge of Data warehouse and BI technologies, exposure to ETL and Reporting tools like Teradata, excellent communication skills, expertise in SQL databases (e.g. MySQL or Oracle) and strong ability to write SQL queries. Selected candidates should bring their own laptops.",
-    "model_answer": "The required experience and skills for the Lead Hadoop Developer position in Bellevue, WA are at least 5+ years of solid experience in the software industry with strong experience in Big Data Technologies, strong expertise working in/understanding of Big data technologies with strong focus on Hortonworks, and strong knowledge of Kafka, Flume, Sqoop, Hive, Pig, Map Reduce, Spark, Storm with hands-on experience - all or most of these.",
+    "model_answer": "The required experience and skills for the Lead Hadoop Developer position in Bellevue, WA are:\n\n- At least 5+ years of solid experience in the software industry with strong experience in Big Data Technologies.\n- Strong expertise working in/understanding of Big Data technologies with a strong focus on Hortonworks.\n- Strong knowledge of Kafka, Flume, Sqoop, Hive, Pig, Map Reduce, Spark, Storm with hands-on experience - all or most of these.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer accurately reflects the required experience and skills for the Lead Hadoop Developer position as described in the ground truth."
+    "reason": "The model answer accurately reflects the required experience and skills for the Lead Hadoop Developer position as outlined in the ground truth."
   },
   {
     "index": 34,
@@ -451,8 +451,8 @@
       "vector_results_count": 3,
       "graph_results_count": 0
     },
-    "score": 0,
-    "reason": "The model answer is incomplete as it does not mention her work as a journalist or her notable works such as the Woman to Watch column, parenting articles, and children's books."
+    "score": 1,
+    "reason": "The model answer correctly identifies Sandy Sloane's profession and her notable works, aligning with the ground truth."
   },
   {
     "index": 35,
@@ -472,13 +472,13 @@
     "mode": "vector_only",
     "question": "What is the strategy the shy person uses to flirt with girls at work?",
     "ground_truth": "The shy person's strategy involves a process of gradually increasing familiarity. It starts with smiling upon making eye contact, then progresses to a wave and a smile, and finally to saying \"Hi\" when passing by closely. The final phase is to give a compliment, now that the girl recognizes him and he doesn't seem like a stranger.",
-    "model_answer": "The strategy the shy person uses to flirt with girls at work is to start by smiling when making eye contact, then progressing to a \"Hey, I recognize you!\" wave, and finally finding an opportunity to say \"Hi!\" [Chunk 3 from doc_0036.txt]",
+    "model_answer": "The strategy the shy person uses to flirt with girls at work is a process that involves starting out by smiling as soon as they make eye contact, then progressing to a \"Hey, I recognize you!\" wave along with the smile, and finally finding an opportunity to pass in close enough proximity to get a \"Hi!\" in.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer accurately describes the strategy of gradually increasing familiarity as outlined in the ground truth."
+    "reason": "The model answer accurately describes the gradual process of increasing familiarity as outlined in the ground truth."
   },
   {
     "index": 37,
@@ -511,13 +511,13 @@
     "mode": "vector_only",
     "question": "What are some of the new features of the 2013 Mercedes-Benz SL model?",
     "ground_truth": "The 2013 Mercedes-Benz SL model is constructed almost entirely of aluminum, making it lighter than its predecessor. It has two different suspension systems, one of which is the Agility Control Suspension as standard equipment. The car is powered by a new V8 engine that makes 429 horsepower and generates 32% more torque for an increase to 516 lb.-ft. The engine features an ECO stop/start function as standard equipment. The car also offers a retractable hard top that can be operated using a space-saving electrohydraulic mechanism. Other new features include the unique Frontbass system, the highly efficient MAGIC VISION CONTROL, and Active Parking Assist that uses ultrasound sensors to identify parking spaces and automatically steer the vehicle into the selected space.",
-    "model_answer": "Some of the new features of the 2013 Mercedes-Benz SL model include the unique Frontbass system, MAGIC VISION CONTROL, and a special-edition model called the Edition 1. [Chunk 2 from doc_0039.txt]",
+    "model_answer": "Some of the new features of the 2013 Mercedes-Benz SL model include the unique Frontbass system that transforms the luxury sports car into a veritable concert hall with the top up or down and the highly efficient MAGIC VISION CONTROL. Additionally, Mercedes-Benz will be offering a special-edition model, the Edition 1, for a limited period.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer includes incorrect information about a special-edition model called the Edition 1, which is not mentioned in the ground truth."
+    "reason": "The model answer is incomplete and omits several key features mentioned in the ground truth, such as the aluminum construction, suspension systems, V8 engine, retractable hard top, and Active Parking Assist."
   },
   {
     "index": 40,
@@ -537,13 +537,13 @@
     "mode": "vector_only",
     "question": "What is the common criticism of The Guardian and the Daily Mail according to the discussion?",
     "ground_truth": "Both The Guardian and the Daily Mail are criticized for being politically predictable and read by members of the middle class who are largely cut-off from what most of the country is actually like but think they know how to run the whole world. They both promote a rather simple worldview that blames a small clique for everything that goes wrong in the world.",
-    "model_answer": "The common criticism of The Guardian and the Daily Mail according to the discussion is that they are both \"ripe for satirical takedown\" and can be \"ridiculous\" in their own ways.",
+    "model_answer": "The common criticism of The Guardian and the Daily Mail according to the discussion is that they are both \"ripe for satirical takedown\" and \"ridiculous\".",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer does not address the specific criticism mentioned in the ground truth, which focuses on political predictability and a simplistic worldview."
+    "reason": "The model answer does not accurately reflect the ground truth criticism, which focuses on political predictability and a simplistic worldview, rather than being 'ripe for satirical takedown' and 'ridiculous'."
   },
   {
     "index": 42,
@@ -556,33 +556,33 @@
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer does not provide the correct information and instead states it does not know."
+    "reason": "The model answer does not provide the correct information and instead claims to lack knowledge."
   },
   {
     "index": 43,
     "mode": "vector_only",
     "question": "What are some benefits of using wall letters in decorating a baby's room?",
     "ground_truth": "Using wall letters in decorating a baby's room allows you to add personality into it and enables you to perfectly express your message to your new baby. You can easily stick the letters onto the walls to reflect a song, quote or your very own personal message. You can also change them easily without causing damage to your walls. These letters are very affordable yet they can be very stylish.",
-    "model_answer": "Some benefits of using wall letters in decorating a baby's room include adding personality, expressing personal messages, and being able to customize the design and color to fit your specifications.",
+    "model_answer": "Some benefits of using wall letters in decorating a baby's room include adding personality to the space, allowing for customization according to specifications, and being easy to install and change.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer correctly identifies benefits of using wall letters in decorating a baby's room, including adding personality, expressing personal messages, and customization."
+    "reason": "The model answer correctly identifies key benefits of using wall letters in decorating a baby's room, aligning with the ground truth."
   },
   {
     "index": 44,
     "mode": "vector_only",
     "question": "What were the trends discussed in the 2017 Information Management Symposium for data analysis in the health insurance industry?",
     "ground_truth": "The trends discussed in the 2017 Information Management Symposium for data analysis in the health insurance industry were artificial intelligence, curated data visualization and aligning business with technology and government partnerships to source the right data.",
-    "model_answer": "The trends discussed in the 2017 Information Management Symposium for data analysis in the health insurance industry were artificial intelligence, curated data visualization, and aligning business with technology and government partnerships to source the right data.",
+    "model_answer": "Trends in this year's discussions were artificial intelligence, curated data visualization and aligning business with technology and government partnerships to source the right data.",
     "context_used": {
       "vector_results_count": 3,
       "graph_results_count": 0
     },
     "score": 1,
-    "reason": "The model answer matches the ground truth exactly."
+    "reason": "The model answer correctly identifies the trends discussed in the 2017 Information Management Symposium for data analysis in the health insurance industry."
   },
   {
     "index": 45,
@@ -634,7 +634,7 @@
       "graph_results_count": 0
     },
     "score": 0,
-    "reason": "The model answer incorrectly refers to the 'Nordic Council Tunes Prize' instead of the 'Nordic Council Music Prize' and provides unrelated information about a Danish instrumentalist, which is factually incorrect."
+    "reason": "The model answer incorrectly states that the prize was awarded to a Danish instrumentalist, whereas the ground truth specifies Stanley Whitney, who is not mentioned in the model answer."
   },
   {
     "index": 49,

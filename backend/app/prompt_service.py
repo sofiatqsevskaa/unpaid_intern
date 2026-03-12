@@ -62,6 +62,17 @@ def query_model(req: QueryRequest):
         raise HTTPException(status_code=500, detail=f"Unexpected error: {e}")
 
 
+def _flatten_entities(entities) -> List[Dict[str, Any]]:
+    if isinstance(entities, dict):
+        flat = entities.get("direct", []) + entities.get("expanded", [])
+    elif isinstance(entities, list):
+        flat = entities
+    else:
+        return []
+
+    return [e for e in flat if isinstance(e, dict) and "name" in e]
+
+
 @router.post("/rag/query")
 def rag_query(req: RAGQueryRequest):
     context_parts = []
@@ -69,32 +80,45 @@ def rag_query(req: RAGQueryRequest):
     if req.vector_results:
         context_parts.append("DOCUMENT CHUNKS (VECTOR SEARCH)")
         for i, res in enumerate(req.vector_results, 1):
-            doc_name = res.get('metadata', {}).get('document_name', 'unknown')
-            content = res.get('content', "")
-            context_parts.append(f"[Chunk {i} from {doc_name}]:\n{content}\n")
+            doc_name = res.get("metadata", {}).get("document_name", "unknown")
+            content = res.get("content", "")
+            context_parts.append(
+                f"[Chunk {i} from '{doc_name}']:\n{content}\n")
+
     if req.graph_results:
-        context_parts.append(
-            "ENTITIES AND RELATIONSHIPS (GRAPH SEARCH)")
+        context_parts.append("ENTITIES AND RELATIONSHIPS (GRAPH SEARCH)")
         for i, res in enumerate(req.graph_results, 1):
             doc = res.get("document", {})
-            doc_name = doc.get('name', 'unknown')
-            context_parts.append(f"[Document {i}: {doc_name}]")
+            doc_name = doc.get("name", "unknown")
 
-            entities = res.get("entities", [])
+            chunk = res.get("chunk", {})
+            chunk_text = chunk.get("text") or doc.get("content_preview", "")
+
+            context_parts.append(f"[Graph result {i} from '{doc_name}']:")
+
+            if chunk_text:
+                context_parts.append(f"Content: {chunk_text}")
+
+            entities = _flatten_entities(res.get("entities", []))
             if entities:
                 entity_text = ", ".join(
-                    [f"{e.get('name')} ({e.get('type')})" for e in entities])
+                    f"{e.get('name')} ({e.get('type')})" for e in entities
+                )
                 context_parts.append(f"Entities mentioned: {entity_text}")
 
-            preview = doc.get('content_preview', '')
-            if preview:
-                context_parts.append(f"Content preview: {preview}")
+            ctx = res.get("context", {})
+            if ctx.get("prev_chunk"):
+                context_parts.append(
+                    f"[preceding context]: {ctx['prev_chunk']}")
+            if ctx.get("next_chunk"):
+                context_parts.append(
+                    f"[following context]: {ctx['next_chunk']}")
 
             context_parts.append("")
 
     context = "\n".join(context_parts)
 
-    system_prompt = """You are a helpful assistant that answers questions based ONLY on the provided context. 
+    system_prompt = """You are a helpful assistant that answers questions based ONLY on the provided context.
 If the context doesn't contain the answer, say "I don't have enough information to answer that."
 Be concise and accurate. Always cite which document your information comes from."""
 
@@ -135,7 +159,7 @@ Answer based only on the context above:"""
             "response": answer,
             "context_used": {
                 "vector_results_count": len(req.vector_results),
-                "graph_results_count": len(req.graph_results)
+                "graph_results_count": len(req.graph_results),
             }
         }
 
